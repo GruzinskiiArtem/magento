@@ -9,7 +9,7 @@ class Page extends AbstractModel implements PageInterface
 {
     protected function _construct()
     {
-        $this->_init(\Itransition\Blog\Model\ResourceModel\Page::class);
+        $this->_init(\Itransition\Blog\Model\ResourceModel\Post::class);
     }
 
     /**

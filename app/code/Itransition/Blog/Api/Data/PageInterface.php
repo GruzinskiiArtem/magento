@@ -2,8 +2,6 @@
 
 namespace Itransition\Blog\Api\Data;
 
-use Magento\Tests\NamingConvention\true\string;
-
 /**
  * Blog page interface
  */

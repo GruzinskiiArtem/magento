@@ -19,6 +19,15 @@ interface PageRepositoryInterface
     public function save(PageInterface $page);
 
     /**
+     * Retrieve page.
+     *
+     * @param int $pageId
+     * @return PageInterface
+     * @throws LocalizedException
+     */
+    public function getById($pageId);
+
+    /**
      * Delete page.
      *
      * @param PageInterface $page

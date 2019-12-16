@@ -1,6 +1,6 @@
 <?php
 
-namespace Itransition\Blog\Model\ResourceModel\Post;
+namespace Itransition\Blog\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\Context;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
