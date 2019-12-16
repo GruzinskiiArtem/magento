@@ -1,7 +1,7 @@
 {
-    "blog_page": {
+    "itransition_blog_post": {
         "column": {
-            "page_id": true,
+            "post_id": true,
             "title": true,
             "content": true,
             "is_active": true,
