@@ -1,6 +1,6 @@
 <?php
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Itransition_BlogAdminPage',
+    'Itransition_Blog',
     __DIR__
 );

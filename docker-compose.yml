@@ -1,0 +1,41 @@
+version: "3.3"
+services:
+  mysql:
+    image: mysql:5.7
+    hostname: mysql
+    volumes:
+      - "./../mysql/magento:/var/lib/mysql"
+    environment:
+      MYSQL_USER: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+  php-fpm:
+    image: webdevops/php-dev:7.2
+    hostname: php-fpm
+    volumes:
+      - "./:/magento"
+    working_dir: "/magento"
+    depends_on:
+      - mysql
+  apache:
+    image: webdevops/apache-dev
+    hostname: apache
+    environment:
+      WEB_ALIAS_DOMAIN: magento.local
+      WEB_DOCUMENT_ROOT: /magento
+      WEB_DOCUMENT_INDEX: index.php
+      WEB_PHP_SOCKET: php-fpm:9000
+    ports:
+      - "80:80"
+    volumes:
+      - "./:/magento"
+    depends_on:
+      - php-fpm
+  composer:
+    restart: "no"
+    image: composer:1.9.1
+    command: install --ignore-platform-reqs
+    working_dir: /app
+    volumes:
+      - "./:/magento"

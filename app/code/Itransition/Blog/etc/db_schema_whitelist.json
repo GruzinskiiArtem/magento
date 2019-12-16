@@ -4,10 +4,10 @@
             "page_id": true,
             "title": true,
             "content": true,
-            "enabled": true,
+            "is_active": true,
             "identifier": true,
-            "created_at": true,
-            "updated_at": true
+            "creation_time": true,
+            "update_time": true
         },
         "constraint": {
             "PRIMARY": true

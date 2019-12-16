@@ -7,7 +7,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Backend\Block\Template" template="Itransition_BlogAdminPage::posts.phtml"/>
+            <uiComponent name="blog_page_listing"/>
         </referenceContainer>
     </body>
 </page>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <menu>
-        <add id="Itransition_BlogAdminPage::greetings" title="Blog" translate="title" module="Itransition_BlogAdminPage" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="Itransition_BlogAdminPage" resource="Itransition_BlogAdminPage::greetings"/>
-        <add id="Itransition_BlogAdminPage::greetings_Posts" title="Posts" translate="title" module="Itransition_BlogAdminPage" parent="Itransition_BlogAdminPage::greetings" sortOrder="10" dependsOnModule="Itransition_BlogAdminPage" action="blogadminpage/posts" resource="Itransition_BlogAdminPage::greetings"/>
-    </menu>
-</config>

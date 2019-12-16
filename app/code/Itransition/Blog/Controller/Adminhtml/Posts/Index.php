@@ -1,6 +1,6 @@
 <?php
 
-namespace Itransition\BlogAdminPage\Controller\Adminhtml\Posts;
+namespace Itransition\Blog\Controller\Adminhtml\Posts;
 
 class Index extends \Magento\Backend\App\Action
 {
@@ -25,7 +25,7 @@ class Index extends \Magento\Backend\App\Action
     }
 
     /**
-     * Load the page defined in view/adminhtml/layout/blogadminpage_posts_index.xml
+     * Load the page defined in view/adminhtml/layout/blog_posts_index.xml
      *
      * @return \Magento\Framework\View\Result\Page
      */
