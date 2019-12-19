@@ -7,7 +7,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="blog_post_listing"/>
+            <uiComponent name="itransition_blog_post_listing"/>
         </referenceContainer>
     </body>
 </page>

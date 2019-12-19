@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">itransition_blog_post_form.post_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Post Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Itransition\Blog\Block\Adminhtml\Post\Edit\SaveButton"/>
+            <button name="delete" class="Itransition\Blog\Block\Adminhtml\Post\Edit\DeleteButton"/>
+            <button name="back" class="Itransition\Blog\Block\Adminhtml\Post\Edit\BackButton"/>
+        </buttons>
+        <namespace>itransition_blog_post_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>itransition_blog_post_form.post_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="post_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="blog/post/save"/>
+        </settings>
+        <dataProvider class="Itransition\Blog\Model\Post\DataProvider" name="post_form_data_source">
+            <settings>
+                <requestFieldName>post_id</requestFieldName>
+                <primaryFieldName>post_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<argument name="data" xsi:type="array">
+    <item name="js_config" xsi:type="array">
+        <item name="provider" xsi:type="string">itransition_blog_post_form.post_form_data_source</item>
+        <item name="deps" xsi:type="string">itransition_blog_post_form.post_form_data_source</item>
+    </item>
+    <item name="label" xsi:type="string" translate="true">Post Information</item>
+    <item name="config" xsi:type="array">
+        <item name="dataScope" xsi:type="string">data</item>
+        <item name="namespace" xsi:type="string">itransition_blog_post_form</item>
+    </item>
+    <item name="template" xsi:type="string">templates/form/collapsible</item>
+    <item name="buttons" xsi:type="array">
+        <item name="back" xsi:type="string">Itransition\Blog\Block\Adminhtml\Post\Edit\SaveButton</item>
+        <item name="delete" xsi:type="string">Itransition\Blog\Block\Adminhtml\Post\Edit\DeleteButton</item>
+        <item name="reset" xsi:type="string">Itransition\Blog\Block\Adminhtml\Post\Edit\BackButton</item>
+    </item>
+</argument>
+<dataSource name="banner_form_data_source">
+    <argument name="dataProvider" xsi:type="configurableObject">
+        <argument name="class" xsi:type="string">Itransition\Blog\Model\Post\DataProvider</argument>
+        <argument name="name" xsi:type="string">post_form_data_source</argument>
+        <argument name="primaryFieldName" xsi:type="string">post_id</argument>
+        <argument name="requestFieldName" xsi:type="string">post_id</argument>
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="submit_url" xsi:type="url" path="blog/post/save"/>
+            </item>
+        </argument>
+    </argument>
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+        </item>
+    </argument>
+</dataSource>
+<fieldset name="general">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="label" xsi:type="string"/>
+        </item>
+    </argument>
+    <field name="post_id">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="visible" xsi:type="boolean">false</item>
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="formElement" xsi:type="string">input</item>
+                <item name="source" xsi:type="string">post</item>
+                <item name="dataScope" xsi:type="string">post_id</item>
+            </item>
+        </argument>
+    </field>
+</fieldset>
+</form>

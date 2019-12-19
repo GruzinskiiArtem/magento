@@ -3,11 +3,11 @@
 namespace Itransition\Blog\Api\Data;
 
 /**
- * Blog page interface
+ * Blog post interface
  */
-interface PageInterface
+interface PostInterface
 {
-    const PAGE_ID       = 'page_id';
+    const POST_ID       = 'post_id';
     const TITLE         = 'title';
     const CONTENT       = 'content';
     const IS_ACTIVE     = 'is_active';

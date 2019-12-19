@@ -2,6 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="Itransition_Blog::greetings" title="Blog" translate="title" module="Itransition_Blog" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="Itransition_Blog" resource="Itransition_Blog::greetings"/>
-        <add id="Itransition_Blog::greetings_Posts" title="Posts" translate="title" module="Itransition_Blog" parent="Itransition_Blog::greetings" sortOrder="10" dependsOnModule="Itransition_Blog" action="blog/posts" resource="Itransition_Blog::greetings"/>
+        <add id="Itransition_Blog::greetings_Post" title="Posts" translate="title" module="Itransition_Blog" parent="Itransition_Blog::greetings" sortOrder="10" dependsOnModule="Itransition_Blog" action="blog/post" resource="Itransition_Blog::greetings"/>
     </menu>
 </config>

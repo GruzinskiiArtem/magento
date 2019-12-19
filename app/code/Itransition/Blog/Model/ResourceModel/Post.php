@@ -24,6 +24,6 @@ class Post extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('blog_page', 'page_id');
+        $this->_init('itransition_blog_post', 'post_id');
     }
 }

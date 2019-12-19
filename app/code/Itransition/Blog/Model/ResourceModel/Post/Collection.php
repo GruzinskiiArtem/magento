@@ -2,7 +2,6 @@
 
 namespace Itransition\Blog\Model\ResourceModel\Post;
 
-use Itransition\Blog\Api\Data\PageInterface;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection

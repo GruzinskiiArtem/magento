@@ -2,14 +2,14 @@
 
 namespace Itransition\Blog\Model;
 
-use Itransition\Blog\Api\Data\PageInterface;
+use Itransition\Blog\Api\Data\PostInterface;
 use Magento\Framework\Model\AbstractModel;
 
-class Page extends AbstractModel implements PageInterface
+class Post extends AbstractModel implements PostInterface
 {
     protected function _construct()
     {
-        $this->_init(\Itransition\Blog\Model\ResourceModel\Post::class);
+        $this->_init(ResourceModel\Post::class);
     }
 
     /**
@@ -19,7 +19,7 @@ class Page extends AbstractModel implements PageInterface
      */
     public function getId()
     {
-        return parent::getData(self::PAGE_ID);
+        return parent::getData(self::POST_ID);
     }
 
     /**
@@ -86,18 +86,18 @@ class Page extends AbstractModel implements PageInterface
      * Set ID
      *
      * @param int $id
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setId($id)
     {
-        return $this->setData(self::PAGE_ID, $id);
+        return $this->setData(self::POST_ID, $id);
     }
 
     /**
      * Set title
      *
      * @param string $title
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setTitle($title)
     {
@@ -108,7 +108,7 @@ class Page extends AbstractModel implements PageInterface
      * Set content
      *
      * @param string $content
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setContent($content)
     {
@@ -119,7 +119,7 @@ class Page extends AbstractModel implements PageInterface
      * Set identifier
      *
      * @param string $identifier
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setIdentifier($identifier)
     {
@@ -130,7 +130,7 @@ class Page extends AbstractModel implements PageInterface
      * Set creation time
      *
      * @param string $creationTime
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setCreationTime($creationTime)
     {
@@ -141,7 +141,7 @@ class Page extends AbstractModel implements PageInterface
      * Set update time
      *
      * @param string $updateTime
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setUpdateTime($updateTime)
     {
@@ -152,7 +152,7 @@ class Page extends AbstractModel implements PageInterface
      * Set is active
      *
      * @param int|bool $isActive
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setIsActive($isActive)
     {
