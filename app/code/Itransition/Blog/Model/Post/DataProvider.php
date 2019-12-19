@@ -45,8 +45,7 @@ class DataProvider extends AbstractDataProvider
         CollectionFactory $pageCollectionFactory,
         DataPersistorInterface $dataPersistor,
         array $meta = [],
-        array $data = [],
-        ?AuthorizationInterface $auth = null
+        array $data = []
     ) {
         $this->collection = $pageCollectionFactory->create();
         $this->dataPersistor = $dataPersistor;

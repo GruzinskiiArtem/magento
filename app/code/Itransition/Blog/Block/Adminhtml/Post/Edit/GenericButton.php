@@ -14,20 +14,12 @@ class GenericButton
     protected $context;
 
     /**
-     * @var PostRepositoryInterface
-     */
-    protected $postRepository;
-
-    /**
      * @param Context $context
-     * @param PostRepositoryInterface $postRepository
      */
     public function __construct(
-        Context $context,
-        PostRepositoryInterface $postRepository
+        Context $context
     ) {
         $this->context = $context;
-        $this->postRepository = $postRepository;
     }
 
     /**
@@ -38,9 +30,7 @@ class GenericButton
     public function getPostId()
     {
         try {
-            return $this->postRepository->getById(
-                $this->context->getRequest()->getParam('post_id')
-            )->getId();
+            return $this->context->getRequest()->getParam('post_id');
         } catch (NoSuchEntityException $e) {
         }
         return null;

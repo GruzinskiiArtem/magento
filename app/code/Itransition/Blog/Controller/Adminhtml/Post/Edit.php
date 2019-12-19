@@ -5,7 +5,6 @@ namespace Itransition\Blog\Controller\Adminhtml\Post;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Backend\App\Action;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\Registry;
 use Magento\Backend\Model\View\Result\Page;
 use Itransition\Blog\Model\Post;
 use \Magento\Backend\Model\View\Result\Redirect;
@@ -15,12 +14,6 @@ use \Magento\Backend\Model\View\Result\Redirect;
  */
 class Edit extends Action implements HttpGetActionInterface
 {
-    /**
-     * Core registry
-     *
-     * @var Registry
-     */
-    protected $_coreRegistry;
 
     /**
      * @var PageFactory
@@ -30,15 +23,12 @@ class Edit extends Action implements HttpGetActionInterface
     /**
      * @param Action\Context $context
      * @param PageFactory $resultPageFactory
-     * @param Registry $registry
      */
     public function __construct(
         Action\Context $context,
-        PageFactory $resultPageFactory,
-        Registry $registry
+        PageFactory $resultPageFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
-        $this->_coreRegistry = $registry;
         parent::__construct($context);
     }
 
@@ -68,7 +58,7 @@ class Edit extends Action implements HttpGetActionInterface
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('post_id');
-        $model = $this->_objectManager->create(\Itransition\Blog\Model\Post::class);
+        $model = $this->_objectManager->create(Post::class);
 
         // 2. Initial checking
         if ($id) {
@@ -81,7 +71,7 @@ class Edit extends Action implements HttpGetActionInterface
             }
         }
 
-        $this->_coreRegistry->register('blog_post', $model);
+//        $this->_coreRegistry->register('blog_post', $model);
 
         // 5. Build edit form
         /** @var Page $resultPage */

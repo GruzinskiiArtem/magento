@@ -66,43 +66,43 @@ interface PostInterface
 
     /**
      * @param int $id
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setId($id);
 
     /**
      * @param string $title
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setTitle($title);
 
     /**
      * @param string $content
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setContent($content);
 
     /**
      * @param bool $isActive
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setIsActive($isActive);
 
     /**
      * @param $identifier
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setIdentifier($identifier);
 
     /**
      * @param string $creationTime
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setCreationTime($creationTime);
 
     /**
      * @param string $updateTime
-     * @return \Itransition\Blog\Api\Data\PageInterface
+     * @return PostInterface
      */
     public function setUpdateTime($updateTime);
 }

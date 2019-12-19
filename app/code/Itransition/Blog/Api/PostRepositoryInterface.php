@@ -2,11 +2,9 @@
 
 namespace Itransition\Blog\Api;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
 use Itransition\Blog\Api\Data\PostInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Itransition\Blog\Api\Data\PostSearchResultsInterface;
 
 interface PostRepositoryInterface
 {
@@ -19,15 +17,6 @@ interface PostRepositoryInterface
      * @throws LocalizedException
      */
     public function save(PostInterface $page);
-
-    /**
-     * Retrieve posts matching the specified criteria.
-     *
-     * @param SearchCriteriaInterface $searchCriteria
-     * @return PostSearchResultsInterface
-     * @throws LocalizedException
-     */
-    public function getList(SearchCriteriaInterface $searchCriteria);
 
     /**
      * Retrieve post.
