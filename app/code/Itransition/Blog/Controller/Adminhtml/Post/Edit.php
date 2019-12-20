@@ -4,32 +4,49 @@ namespace Itransition\Blog\Controller\Adminhtml\Post;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Backend\App\Action;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Backend\Model\View\Result\Page;
-use Itransition\Blog\Model\Post;
-use \Magento\Backend\Model\View\Result\Redirect;
+use Itransition\Blog\Model\PostFactory;
+use Magento\Backend\Model\View\Result\Redirect;
+use Itransition\Blog\Model\PostRepository;
 
 /**
  * Edit CMS page action.
  */
 class Edit extends Action implements HttpGetActionInterface
 {
+    /**
+     * @var PostFactory
+     */
+    private $postFactory;
+    /**
+     * @var PostRepository
+     */
+    private $postRepository;
 
     /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    private $resultPageFactory;
 
     /**
+     * Edit constructor.
      * @param Action\Context $context
      * @param PageFactory $resultPageFactory
+     * @param PostRepository $postRepository
+     * @param PostFactory $postFactory
      */
     public function __construct(
         Action\Context $context,
-        PageFactory $resultPageFactory
+        PageFactory $resultPageFactory,
+        PostRepository $postRepository,
+        PostFactory $postFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
+        $this->postRepository = $postRepository;
+        $this->postFactory = $postFactory;
     }
 
     /**
@@ -58,17 +75,24 @@ class Edit extends Action implements HttpGetActionInterface
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('post_id');
-        $model = $this->_objectManager->create(Post::class);
 
         // 2. Initial checking
         if ($id) {
-            $model->load($id);
-            if (!$model->getId()) {
+            try {
+                $model = $this->postRepository->getById($id);
+            } catch (NoSuchEntityException $exception) {
+                $this->messageManager->addErrorMessage(__('This post no longer exists.'));
+                /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+                $resultRedirect = $this->resultRedirectFactory->create();
+                return $resultRedirect->setPath('*/*/');
+            } catch (\Exception $exception) {
                 $this->messageManager->addErrorMessage(__('This post no longer exists.'));
                 /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
                 return $resultRedirect->setPath('*/*/');
             }
+        } else {
+            $model = $this->postFactory->create();
         }
 
 //        $this->_coreRegistry->register('blog_post', $model);

@@ -2,15 +2,11 @@
 
 namespace Itransition\Blog\Model\Post;
 
+use Itransition\Blog\Model\Post;
+use Itransition\Blog\Model\ResourceModel\Post\Collection;
 use Itransition\Blog\Model\ResourceModel\Post\CollectionFactory;
-use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Magento\Ui\DataProvider\Modifier\PoolInterface;
-use Magento\Framework\AuthorizationInterface;
-use Itransition\Blog\Model\ResourceModel\Post\Collection;
-use Itransition\Blog\Model\Post;
-
 
 class DataProvider extends AbstractDataProvider
 {
@@ -33,7 +29,7 @@ class DataProvider extends AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param CollectionFactory $pageCollectionFactory
+     * @param CollectionFactory $postCollectionFactory
      * @param DataPersistorInterface $dataPersistor
      * @param array $meta
      * @param array $data
@@ -42,12 +38,12 @@ class DataProvider extends AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $pageCollectionFactory,
+        CollectionFactory $postCollectionFactory,
         DataPersistorInterface $dataPersistor,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $pageCollectionFactory->create();
+        $this->collection = $postCollectionFactory->create();
         $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }

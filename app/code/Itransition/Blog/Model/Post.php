@@ -4,12 +4,29 @@ namespace Itransition\Blog\Model;
 
 use Itransition\Blog\Api\Data\PostInterface;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\DataObject\IdentityInterface;
 
-class Post extends AbstractModel implements PostInterface
+class Post extends AbstractModel implements PostInterface, IdentityInterface
 {
+    const CACHE_TAG = 'itransition_blog_post';
+
+    protected $_cacheTag = 'itransition_blog_post';
+
+    protected $_eventPrefix = 'itransition_blog_post';
+
+    /**
+     * @var string
+     */
+    protected $_idFieldName = self::POST_ID;
+
     protected function _construct()
     {
         $this->_init(ResourceModel\Post::class);
+    }
+
+    public function getIdentities()
+    {
+        return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
     /**
@@ -19,7 +36,7 @@ class Post extends AbstractModel implements PostInterface
      */
     public function getId()
     {
-        return parent::getData(self::POST_ID);
+        return $this->getData(self::POST_ID);
     }
 
     /**
@@ -29,7 +46,7 @@ class Post extends AbstractModel implements PostInterface
      */
     public function getTitle()
     {
-        return $this->getTitle(self::TITLE);
+        return $this->getData(self::TITLE);
     }
 
     /**
@@ -39,7 +56,7 @@ class Post extends AbstractModel implements PostInterface
      */
     public function getContent()
     {
-        return $this->getContent(self::CONTENT);
+        return $this->getData(self::CONTENT);
     }
 
     /**
@@ -49,7 +66,7 @@ class Post extends AbstractModel implements PostInterface
      */
     public function getIdentifier()
     {
-        return $this->getIdentifier(self::IDENTIFIER);
+        return $this->getData(self::IDENTIFIER);
     }
 
     /**

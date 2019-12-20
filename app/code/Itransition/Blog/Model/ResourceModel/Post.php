@@ -2,20 +2,12 @@
 
 namespace Itransition\Blog\Model\ResourceModel;
 
-use Magento\Framework\Model\ResourceModel\Db\Context;
+use Itransition\Blog\Api\Data\PostInterface;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Post extends AbstractDb
 {
-
-    /**
-     * @param Context $context
-     * @param string $connectionName
-     */
-    public function __construct(Context $context, $connectionName = null)
-    {
-        parent::__construct($context, $connectionName);
-    }
+    const TABLE_NAME = 'itransition_blog_post';
 
     /**
      * Initialize resource model
@@ -24,6 +16,6 @@ class Post extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('itransition_blog_post', 'post_id');
+        $this->_init(self::TABLE_NAME, PostInterface::POST_ID);
     }
 }

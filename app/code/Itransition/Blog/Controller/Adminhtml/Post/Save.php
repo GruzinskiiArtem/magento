@@ -30,36 +30,34 @@ class Save extends Action implements HttpPostActionInterface
     protected $dataPersistor;
 
     /**
-     * @var \Magento\Cms\Model\PageFactory
+     * @var \Itransition\Blog\Model\PostFactory
      */
-    private $pageFactory;
+    private $postFactory;
 
     /**
      * @var PostRepositoryInterface
      */
-    private $pageRepository;
+    private $postRepository;
 
     /**
+     * Save constructor.
      * @param Action\Context $context
      * @param PostDataProcessor $dataProcessor
      * @param DataPersistorInterface $dataPersistor
-     * @param PageFactory|null $pageFactory
-     * @param PostRepositoryInterface|null $pageRepository
+     * @param \Itransition\Blog\Model\PostFactory|null $postFactory
+     * @param PostRepositoryInterface|null $postRepository
      */
     public function __construct(
         Action\Context $context,
         PostDataProcessor $dataProcessor,
         DataPersistorInterface $dataPersistor,
-        \Magento\Cms\Model\PageFactory $pageFactory = null,
-        PostRepositoryInterface $pageRepository = null
+        \Itransition\Blog\Model\PostFactory $postFactory = null,
+        PostRepositoryInterface $postRepository = null
     ) {
         $this->dataProcessor = $dataProcessor;
         $this->dataPersistor = $dataPersistor;
-        $this->pageFactory = $pageFactory
-            ?: \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Cms\Model\PageFactory::class);
-        $this->pageRepository = $pageRepository
-            ?: \Magento\Framework\App\ObjectManager::getInstance()
-                ->get(PostRepositoryInterface::class);
+        $this->postFactory = $postFactory;
+        $this->postRepository = $postRepository;
         parent::__construct($context);
     }
 
@@ -84,12 +82,12 @@ class Save extends Action implements HttpPostActionInterface
             }
 
             /** @var Post $model */
-            $model = $this->pageFactory->create();
+            $model = $this->postFactory->create();
 
             $id = $this->getRequest()->getParam('post_id');
             if ($id) {
                 try {
-                    $model = $this->pageRepository->getById($id);
+                    $model = $this->postRepository->getById($id);
                 } catch (LocalizedException $e) {
                     $this->messageManager->addErrorMessage(__('This post no longer exists.'));
                     return $resultRedirect->setPath('*/*/');
@@ -99,7 +97,7 @@ class Save extends Action implements HttpPostActionInterface
             $model->setData($data);
 
             try {
-                $this->pageRepository->save($model);
+                $this->postRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved the post.'));
                 return $this->processResultRedirect($model, $resultRedirect, $data);
             } catch (LocalizedException $e) {
@@ -126,12 +124,12 @@ class Save extends Action implements HttpPostActionInterface
     private function processResultRedirect($model, $resultRedirect, $data)
     {
         if ($this->getRequest()->getParam('back', false) === 'duplicate') {
-            $newPage = $this->pageFactory->create(['data' => $data]);
+            $newPage = $this->postFactory->create(['data' => $data]);
             $newPage->setId(null);
             $identifier = $model->getIdentifier() . '-' . uniqid();
             $newPage->setIdentifier($identifier);
             $newPage->setIsActive(false);
-            $this->pageRepository->save($newPage);
+            $this->postRepository->save($newPage);
             $this->messageManager->addSuccessMessage(__('You duplicated the post.'));
             return $resultRedirect->setPath(
                 '*/*/edit',

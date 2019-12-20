@@ -20,7 +20,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
                     'buttonAdapter' => [
                         'actions' => [
                             [
-                                'targetName' => 'blog_post_form.blog_post_form',
+                                'targetName' => 'itransition_blog_post_form.itransition_blog_post_form',
                                 'actionName' => 'save',
                                 'params' => [
                                     false
