@@ -44,15 +44,15 @@ class Save extends Action implements HttpPostActionInterface
      * @param Action\Context $context
      * @param PostDataProcessor $dataProcessor
      * @param DataPersistorInterface $dataPersistor
-     * @param \Itransition\Blog\Model\PostFactory|null $postFactory
-     * @param PostRepositoryInterface|null $postRepository
+     * @param \Itransition\Blog\Model\PostFactory $postFactory
+     * @param PostRepositoryInterface $postRepository
      */
     public function __construct(
         Action\Context $context,
         PostDataProcessor $dataProcessor,
         DataPersistorInterface $dataPersistor,
-        \Itransition\Blog\Model\PostFactory $postFactory = null,
-        PostRepositoryInterface $postRepository = null
+        \Itransition\Blog\Model\PostFactory $postFactory,
+        PostRepositoryInterface $postRepository
     ) {
         $this->dataProcessor = $dataProcessor;
         $this->dataPersistor = $dataPersistor;
@@ -73,35 +73,36 @@ class Save extends Action implements HttpPostActionInterface
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
-            $data = $this->dataProcessor->filter($data);
+//            $data = $this->dataProcessor->filter($data);
             if (isset($data['is_active']) && $data['is_active'] === 'true') {
-                $data['is_active'] = Post::IS_ACTIVE;
+                $data['is_active'] = Post::STATUS_ENABLED;
             }
             if (empty($data['post_id'])) {
                 $data['post_id'] = null;
             }
 
             /** @var Post $model */
-            $model = $this->postFactory->create();
 
-            $id = $this->getRequest()->getParam('post_id');
-            if ($id) {
+
+//            $id = $this->getRequest()->getParam('post_id');
+            if (!empty($data['post_id'])) {
                 try {
-                    $model = $this->postRepository->getById($id);
+                    $model = $this->postRepository->getById($data['post_id']);
                 } catch (LocalizedException $e) {
                     $this->messageManager->addErrorMessage(__('This post no longer exists.'));
                     return $resultRedirect->setPath('*/*/');
                 }
+            } else {
+                $model = $this->postFactory->create();
             }
 
+            $data = $this->_filterFoodData($data);
             $model->setData($data);
 
             try {
                 $this->postRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved the post.'));
                 return $this->processResultRedirect($model, $resultRedirect, $data);
-            } catch (LocalizedException $e) {
-                $this->messageManager->addExceptionMessage($e->getPrevious() ?: $e);
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the post.'));
             }
@@ -144,5 +145,15 @@ class Save extends Action implements HttpPostActionInterface
             return $resultRedirect->setPath('*/*/edit', ['post_id' => $model->getId(), '_current' => true]);
         }
         return $resultRedirect->setPath('*/*/');
+    }
+
+    public function _filterFoodData(array $data)
+    {
+        if (isset($data['image'][0]['name'])) {
+            $data['image'] = $data['image'][0]['name'];
+        } else {
+            $data['image'] = null;
+        }
+        return $data;
     }
 }

@@ -69,7 +69,7 @@ class PostRepository implements PostRepositoryInterface
      *
      * @param string $postId
      * @return Post
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function getById($postId)
     {
@@ -83,10 +83,21 @@ class PostRepository implements PostRepositoryInterface
         return $post;
     }
 
-//    public function getByIdentifier($identifier)
-//    {
-//
-//    }
+    /**
+     * @param string $identifier
+     * @return Post
+     * @throws NoSuchEntityException
+     */
+    public function getByIdentifier($identifier)
+    {
+        $post = $this->$this->postFactory->create();
+        $post-> ($identifier);
+        if (!$post->getId()) {
+            throw new NoSuchEntityException(__('The Blog page with the "%1" ID doesn\'t exist.', $identifier));
+        }
+
+        return $post;
+    }
 
     /**
      * Delete Page

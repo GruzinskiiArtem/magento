@@ -53,7 +53,7 @@
             </settings>
         </field>
 
-        <field name="is_active" sortOrder="10" formElement="checkbox">
+        <field name="is_active" sortOrder="1" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">post</item>
@@ -78,7 +78,7 @@
             </formElements>
         </field>
 
-        <field name="title" sortOrder="20" formElement="input">
+        <field name="title" sortOrder="2" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">post</item>
@@ -94,7 +94,7 @@
             </settings>
         </field>
 
-        <field name="identifier" formElement="input">
+        <field name="identifier" sortOrder="3" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">post</item>
@@ -107,23 +107,33 @@
             </settings>
         </field>
 
+        <field name="image" formElement="fileUploader">
+            <settings>
+                <notice translate="true">Allowed file types: jpg, jpeg, gif, png.</notice>
+                <label translate="true">Image</label>
+                <componentType>fileUploader</componentType>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>10240000</maxFileSize>
+                        <placeholderType>image</placeholderType>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">blog/post/upload</param>
+                        </uploaderConfig>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+
         <fieldset name="content" sortOrder="10">
             <settings>
                 <collapsible>true</collapsible>
                 <label translate="true">Content</label>
             </settings>
-            <field name="content_heading" formElement="input">
-                <argument name="data" xsi:type="array">
-                    <item name="config" xsi:type="array">
-                        <item name="source" xsi:type="string">post</item>
-                    </item>
-                </argument>
-                <settings>
-                    <dataType>text</dataType>
-                    <label translate="true">Content Heading</label>
-                    <dataScope>content_heading</dataScope>
-                </settings>
-            </field>
+
             <field name="content" formElement="wysiwyg">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">

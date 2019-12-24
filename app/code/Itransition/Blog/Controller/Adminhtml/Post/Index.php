@@ -26,11 +26,7 @@ class Index extends Action
         $this->resultPageFactory = $resultPageFactory;
     }
 
-    /**
-     * Load the page defined in view/adminhtml/layout/blog_post_index.xml
-     *
-     * @return Page
-     */
+
     public function execute()
     {
         return $resultPage = $this->resultPageFactory->create();

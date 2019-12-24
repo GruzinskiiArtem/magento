@@ -13,6 +13,8 @@
                 comment="Creation Time"/>
         <column xsi:type="timestamp" name="update_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Update Time"/>
+        <column xsi:type="varchar" name="image" nullable="false" length="32" default="image"
+                comment="Image Name"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="post_id"/>
         </constraint>

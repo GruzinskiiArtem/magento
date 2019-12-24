@@ -1,1 +1,13 @@
-<h2>Welcome to Mageplaza.com</h2>
+<?php
+
+$postCollection = $block->getPostCollection();
+
+/**
+ * @var \Itransition\Blog\Model\Post $post
+ */
+foreach ($postCollection as $post):
+echo $post->getTitle();
+echo $block->generateUrl($post->getIdentifier());
+?>
+<br>
+<?php endforeach; ?>

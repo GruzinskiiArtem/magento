@@ -7,6 +7,7 @@ use Itransition\Blog\Model\ResourceModel\Post\Collection;
 use Itransition\Blog\Model\ResourceModel\Post\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
+use Magento\Framework\UrlInterface;
 
 class DataProvider extends AbstractDataProvider
 {
@@ -62,6 +63,12 @@ class DataProvider extends AbstractDataProvider
         /** @var $post Post */
         foreach ($items as $post) {
             $this->loadedData[$post->getId()] = $post->getData();
+            if ($post->getIcon()) {
+                $m['icon'][0]['name'] = $post->getIcon();
+                $m['icon'][0]['url'] = $this->getMediaUrl().$post->getIcon();
+                $fullData = $this->loadedData;
+                $this->loadedData[$post->getId()] = array_merge($fullData[$post->getId()], $m);
+            }
         }
 
         $data = $this->dataPersistor->get('blog_post');
@@ -75,4 +82,10 @@ class DataProvider extends AbstractDataProvider
         return $this->loadedData;
     }
 
+    public function getMediaUrl()
+    {
+        $mediaUrl = $this->storeManager->getStore()
+                ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA).'blog/tmp/icon/';
+        return $mediaUrl;
+    }
 }

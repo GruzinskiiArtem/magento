@@ -14,6 +14,10 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
 
     protected $_eventPrefix = 'itransition_blog_post';
 
+    const STATUS_ENABLED = 1;
+
+    const STATUS_DISABLED = 0;
+
     /**
      * @var string
      */
@@ -174,5 +178,42 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
     public function setIsActive($isActive)
     {
         return $this->setData(self::IS_ACTIVE, $isActive);
+    }
+
+    /**
+     * Prepare banner's statuses.
+     *
+     * @return array
+     */
+    public function getAvailableStatuses()
+    {
+        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
+    }
+    /**
+     * Retrieve the Image URL
+     *
+     * @param string $imageName
+     * @return bool|string
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getImageUrl($imageName = null)
+    {
+        $url = '';
+        $image = $imageName;
+        if (!$image) {
+            $image = $this->getData('image');
+        }
+        if ($image) {
+            if (is_string($image)) {
+                $url = $this->_getStoreManager()->getStore()->getBaseUrl(
+                        \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
+                    ).FileInfo::ENTITY_MEDIA_PATH .'/'. $image;
+            } else {
+                throw new \Magento\Framework\Exception\LocalizedException(
+                    __('Something went wrong while getting the image url.')
+                );
+            }
+        }
+        return $url;
     }
 }
