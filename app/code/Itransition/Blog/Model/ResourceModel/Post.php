@@ -18,21 +18,4 @@ class Post extends AbstractDb
     {
         $this->_init(self::TABLE_NAME, PostInterface::POST_ID);
     }
-
-    /**
-     * @param $identifier
-     *
-     * @return string
-     */
-    public function loadByIdentifier($identifier)
-    {
-        $connection = $this->getConnection();
-
-        $select = $connection->select()->from([
-            'e' => $connection->getTableName(self::TABLE_NAME)
-        ])->where('e.identifier = :identifier');
-        $bind = ['identifier' => (string)$identifier];
-
-        return $connection->fetchOne($select, $bind);
-    }
 }

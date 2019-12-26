@@ -51,7 +51,7 @@ class Router implements RouterInterface
             $request->setModuleName('itrblog');
             $request->setControllerName('post');
 
-            if (!empty($data[1])) {
+            if (!empty($data[1]) && !isset($data[2])) {
                 $request->setActionName('view');
                 $request->setParams([
                     'identifier' => $data[1],

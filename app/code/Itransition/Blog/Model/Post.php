@@ -5,6 +5,7 @@ namespace Itransition\Blog\Model;
 use Itransition\Blog\Api\Data\PostInterface;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Post extends AbstractModel implements PostInterface, IdentityInterface
 {
@@ -205,6 +206,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
         }
         if ($image) {
             if (is_string($image)) {
+
                 $url = $this->_getStoreManager()->getStore()->getBaseUrl(
                         \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
                     ).FileInfo::ENTITY_MEDIA_PATH .'/'. $image;

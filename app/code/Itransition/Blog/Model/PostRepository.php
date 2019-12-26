@@ -2,6 +2,7 @@
 
 namespace Itransition\Blog\Model;
 
+use Itransition\Blog\Api\Data\PostInterface;
 use Itransition\Blog\Api\PostRepositoryInterface;
 use Itransition\Blog\Model\ResourceModel\Post as ResourcePost;
 use Itransition\Blog\Model\ResourceModel\Post\CollectionFactory as PostCollectionFactory;
@@ -84,19 +85,15 @@ class PostRepository implements PostRepositoryInterface
     }
 
     /**
-     * @param string $identifier
-     * @return Post
-     * @throws NoSuchEntityException
+     * @param $identifier
+     * @return \Magento\Framework\DataObject
      */
     public function getByIdentifier($identifier)
     {
-        $post = $this->$this->postFactory->create();
-        $post-> ($identifier);
-        if (!$post->getId()) {
-            throw new NoSuchEntityException(__('The Blog page with the "%1" ID doesn\'t exist.', $identifier));
-        }
+        $collection = $this->postCollectionFactory->create()
+            ->addFieldToFilter(PostInterface::IDENTIFIER, $identifier);
 
-        return $post;
+        return $collection->getFirstItem();
     }
 
     /**
