@@ -1,0 +1,17 @@
+{
+    "itransition_blog_post": {
+        "column": {
+            "post_id": true,
+            "title": true,
+            "content": true,
+            "is_active": true,
+            "identifier": true,
+            "creation_time": true,
+            "update_time": true,
+            "image": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

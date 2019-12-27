@@ -80,6 +80,9 @@ class Save extends Action implements HttpPostActionInterface
             if (empty($data['post_id'])) {
                 $data['post_id'] = null;
             }
+            if (empty($data['product_id'])) {
+                $data['product_id'] = null;
+            }
 
             /** @var Post $model */
 

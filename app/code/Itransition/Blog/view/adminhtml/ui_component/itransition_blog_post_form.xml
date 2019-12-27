@@ -157,5 +157,29 @@
             </field>
         </fieldset>
 
+        <field name="product_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="options" xsi:type="array">
+                        <item name="default" xsi:type="array">
+                            <item name="value" xsi:type="string"></item>
+                            <item name="label" xsi:type="string"> -- Select Product -- </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Product</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Itransition\Blog\Model\Post\Source\Product"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
     </fieldset>
 </form>

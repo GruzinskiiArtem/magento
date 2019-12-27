@@ -6,17 +6,21 @@
                 comment="Post ID"/>
         <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Post Title"/>
         <column xsi:type="mediumtext" name="content" nullable="true" comment="Post Content"/>
-        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false"
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="true" identity="false"
                 default="1" comment="Is Post Active"/>
-        <column xsi:type="varchar" name="identifier" nullable="false" length="255" comment="Block String Identifier"/>
+        <column xsi:type="varchar" name="identifier" nullable="true" length="255" comment="Block String Identifier"/>
         <column xsi:type="timestamp" name="creation_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Creation Time"/>
         <column xsi:type="timestamp" name="update_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Update Time"/>
-        <column xsi:type="varchar" name="image" nullable="false" length="32" default="image"
+        <column xsi:type="varchar" name="image" nullable="true" length="255" default="image"
                 comment="Image Name"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Product ID"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="post_id"/>
         </constraint>
+        <constraint xsi:type="foreign" referenceId="CATALOG_PRODUCT_ENTITY_ID" table="itransition_blog_post" column="product_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
 </schema>

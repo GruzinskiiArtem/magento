@@ -1,13 +1,14 @@
 <?php
 
 $postCollection = $block->getPostCollection();
-echo ('dsfdsf');
 /**
  * @var \Itransition\Blog\Model\Post $post
  */
-foreach ($postCollection as $post):
-echo $post->getTitle();
-echo $block->generateUrl($post->getIdentifier());
-?>
-<br>
+foreach ($postCollection as $post): ?>
+<div>
+    <a href="<?= $block->generateUrl($post->getIdentifier()) ?>">
+        <h1><?= $post->getTitle() ?></h1>
+        <img src="<?= $block->getImageUrl($post) ?>">
+    </a>
+</div>
 <?php endforeach; ?>

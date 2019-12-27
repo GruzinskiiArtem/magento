@@ -14,6 +14,8 @@ interface PostInterface
     const IDENTIFIER    = 'identifier';
     const CREATION_TIME = 'creation_time';
     const UPDATE_TIME   = 'update_time';
+    const IMAGE_NAME    = 'image';
+    const PRODUCT_ID    = 'product_id';
 
     /**
      * Get ID
@@ -63,6 +65,16 @@ interface PostInterface
      * @return string|null
      */
     public function getUpdateTime();
+
+    /**
+     * @return string
+     */
+    public function getImageName();
+
+    /**
+     * @return int|null
+     */
+    public function getProductId();
 
     /**
      * @param int $id

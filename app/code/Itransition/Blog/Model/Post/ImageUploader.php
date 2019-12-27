@@ -1,6 +1,6 @@
 <?php
 
-namespace Itransition\Blog\Model\Post;;
+namespace Itransition\Blog\Model\Post;
 
 use Psr\Log\LoggerInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -9,6 +9,7 @@ use Magento\Framework\Filesystem;
 use Magento\MediaStorage\Helper\File\Storage\Database;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\LocalizedException;
+use \Magento\Framework\UrlInterface;
 
 class ImageUploader
 {
@@ -131,5 +132,23 @@ class ImageUploader
             }
         }
         return $result;
+    }
+
+    /**
+     * @param $imageName
+     * @return string
+     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getImageUrl($imageName)
+    {
+        if (isset($imageName)) {
+            return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA)
+                . $this->getFilePath($this->getBaseTmpPath(), $imageName);
+        } else {
+            throw new \Magento\Framework\Exception\LocalizedException(
+                __('Something went wrong while getting the image url.')
+            );
+        }
     }
 }
