@@ -60,7 +60,6 @@ class Index extends Template
 
     public function getImageUrl($post)
     {
-        $a = $post->getImageName();
         return $post->getImageUrl($post->getImageName());
     }
 

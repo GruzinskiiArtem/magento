@@ -1,7 +1,9 @@
 <?php
-?>
-<h1>sdgfsdgdsg</h1>
-//$posts = $block->getPosts();
-//foreach ($posts as $post) {
-//    echo $post->getTitle();
-//}
+
+$posts = $block->getPosts();
+
+foreach ($posts as $post): ?>
+<ul>
+    <li><a href="<?= $block->generateUrl($post->getIdentifier()) ?>"><?= $post->getTitle() ?></a></li>
+</ul>
+<?php endforeach; ?>
