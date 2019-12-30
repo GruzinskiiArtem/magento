@@ -12,6 +12,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Itransition\Blog\Api\Data\PostInterface;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\View\Result\PageFactory;
+use Itransition\Blog\Model\PostFactory;
 
 /**
  * Save CMS page action.
@@ -30,7 +31,7 @@ class Save extends Action implements HttpPostActionInterface
     protected $dataPersistor;
 
     /**
-     * @var \Itransition\Blog\Model\PostFactory
+     * @var PostFactory
      */
     private $postFactory;
 
@@ -44,14 +45,14 @@ class Save extends Action implements HttpPostActionInterface
      * @param Action\Context $context
      * @param PostDataProcessor $dataProcessor
      * @param DataPersistorInterface $dataPersistor
-     * @param \Itransition\Blog\Model\PostFactory $postFactory
+     * @param PostFactory $postFactory
      * @param PostRepositoryInterface $postRepository
      */
     public function __construct(
         Action\Context $context,
         PostDataProcessor $dataProcessor,
         DataPersistorInterface $dataPersistor,
-        \Itransition\Blog\Model\PostFactory $postFactory,
+        PostFactory $postFactory,
         PostRepositoryInterface $postRepository
     ) {
         $this->dataProcessor = $dataProcessor;

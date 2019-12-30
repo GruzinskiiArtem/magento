@@ -15,6 +15,10 @@
                     <label>Number of posts</label>
                     <comment>Number of blog posts displayed.</comment>
                 </field>
+                <field id="template_notification" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
             </group>
         </section>
     </system>

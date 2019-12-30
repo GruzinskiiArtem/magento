@@ -17,7 +17,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
 
     protected $_cacheTag = 'itransition_blog_post';
 
-    protected $_eventPrefix = 'itransition_blog_post';
+    protected $_eventPrefix = 'blog_new_post';
 
     const STATUS_ENABLED = 1;
 

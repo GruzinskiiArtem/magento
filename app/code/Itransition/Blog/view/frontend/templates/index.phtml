@@ -5,10 +5,10 @@ $postCollection = $block->getPostCollection();
  * @var \Itransition\Blog\Model\Post $post
  */
 foreach ($postCollection as $post): ?>
-<div>
     <a href="<?= $block->generateUrl($post->getIdentifier()) ?>">
-        <h1><?= $post->getTitle() ?></h1>
-        <img src="<?= $block->getImageUrl($post) ?>">
+        <div class="itr-shadow ">
+            <h1><?= $post->getTitle() ?></h1>
+            <img src="<?= $block->getImageUrl($post) ?>">
+        </div>
     </a>
-</div>
 <?php endforeach; ?>
