@@ -15,7 +15,7 @@ use Magento\Framework\Exception\LocalizedException;
 
 class Email extends AbstractHelper
 {
-    const XML_PATH_EMAIL_TEMPLATE_FIELD = '{namespace}_{module_name}/{group}/template_notification';
+    const XML_PATH_EMAIL_TEMPLATE_FIELD = 'post/general/template_notification';
 
     /**
      * Sender email config path - from default CONTACT extension
@@ -128,13 +128,12 @@ class Email extends AbstractHelper
      * @throws MailException
      * @throws NoSuchEntityException
      */
-    public function notify($email, $title, $creationTime)
+    public function notify($email, $name)
     {
 
         $receiverInfo = [
             'email' => $email,
-            'title' => $title,
-            'creation_time' => $creationTime
+            'name'  => $name
         ];
 
         /* Assign values for your template variables  */

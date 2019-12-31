@@ -20,8 +20,7 @@ class NewPostObserver implements ObserverInterface
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        /** @var Post  $post */
-        $post = $observer->getData('post');
-        $this->emailHelper->notify($post->getTitle(), $post->getCreationTime());
+        $post = $observer->getPost();
+        $this->emailHelper->notify('a.gruzinsky@itransition.com', 'Test');
     }
 }

@@ -13,11 +13,14 @@ use Magento\Framework\Data\Collection\AbstractDb;
 
 class Post extends AbstractModel implements PostInterface, IdentityInterface
 {
+
     const CACHE_TAG = 'itransition_blog_post';
 
     protected $_cacheTag = 'itransition_blog_post';
 
-    protected $_eventPrefix = 'blog_new_post';
+    protected $_eventPrefix = 'itransition_blog_post';
+
+    protected $_eventObject = 'post';
 
     const STATUS_ENABLED = 1;
 

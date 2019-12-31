@@ -1,17 +1,17 @@
 <?php
-/* @var $block Itransition\Blog\Block\Post\View */
+$post = $block->getPostModel();
 ?>
 <h1>
-    <?= $block->getTitle() ?>
+    <?= $post->getTitle() ?>
 </h1>
 <div>
-    <?= $block->getContent() ?>
+    <?= $post->getContent() ?>
 </div>
-<img src="<?= $block->getImageUrl() ?>">
+<img src="<?= $post->getImageUrl() ?>">
 <p>
-    <?= $block->getCreationTime() ?>
+    <?= $post->getCreationTime() ?>
 </p>
 <?php
-if ($block->getProductId()): ?>
-    <a href="<?= $block->getProductUrl() ?> ">Product</a>
+if ($post->getProductId()): ?>
+    <a href="<?= $post->getProductUrl() ?> ">Product</a>
 <?php endif; ?>

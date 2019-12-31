@@ -1,6 +1,6 @@
 <?php
 
-namespace Itransition\Blog\Block\Post;
+namespace Itransition\Blog\ViewModel\Post;
 
 use Itransition\Blog\Model\Post;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -9,8 +9,9 @@ use Magento\Framework\Registry;
 use Itransition\Blog\Model\Post\ImageUploader;
 use Magento\Framework\UrlInterface;
 use Magento\Catalog\Model\ProductRepository;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 
-class View extends Template
+class View implements ArgumentInterface
 {
     /**
      * @var Registry
@@ -31,13 +32,12 @@ class View extends Template
      */
     private $productRepository;
 
-    public function __construct(Template\Context $context, Registry $registry, ProductRepository $productRepository, ImageUploader $imageUploader, UrlInterface $url, array $data = [])
+    public function __construct(Registry $registry, ProductRepository $productRepository, ImageUploader $imageUploader, UrlInterface $url, array $data = [])
     {
         $this->productRepository = $productRepository;
         $this->url = $url;
         $this->imageUploader = $imageUploader;
         $this->registry = $registry;
-        parent::__construct($context, $data);
     }
 
     /**
