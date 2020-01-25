@@ -2,6 +2,7 @@
 
 namespace Itransition\Blog\ViewModel\Post;
 
+use Itransition\Blog\Api\Data\PostInterface;
 use Itransition\Blog\Model\Post;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template;
@@ -10,6 +11,7 @@ use Itransition\Blog\Model\Post\ImageUploader;
 use Magento\Framework\UrlInterface;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Magento\Catalog\Api\Data\ProductInterface;
 
 class View implements ArgumentInterface
 {
@@ -43,7 +45,7 @@ class View implements ArgumentInterface
     /**
      * @return Post
      */
-    private function getPost()
+    private function getPost(): Post
     {
         return $this->registry->registry('current_post');
     }
@@ -51,7 +53,7 @@ class View implements ArgumentInterface
     /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->getPost()->getTitle();
     }
@@ -59,7 +61,7 @@ class View implements ArgumentInterface
     /**
      * @return string
      */
-    public function getImageName()
+    public function getImageName(): string
     {
         return $this->getPost()->getImageName();
     }
@@ -67,17 +69,16 @@ class View implements ArgumentInterface
     /**
      * @return string
      * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getImageUrl()
+    public function getImageUrl(): string
     {
         return $this->getPost()->getImageUrl($this->getImageName());
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->getPost()->getContent();
     }
@@ -85,18 +86,25 @@ class View implements ArgumentInterface
     /**
      * @return string
      */
-    public function getCreationTime()
+    public function getCreationTime(): string
     {
         return $this->getPost()->getCreationTime();
     }
 
-    public function getProductId()
+    /**
+     * @return bool
+     */
+    public function isProductId(): bool
     {
         $productId = $this->getPost()->getProductId();
         return isset($productId) ? true : false;
     }
 
-    public function getProductUrl()
+    /**
+     * @return string
+     * @throws NoSuchEntityException
+     */
+    public function getProductUrl(): string
     {
         $product = $this->getProduct($this->getPost()->getProductId());
         if (isset($product)) {
@@ -106,7 +114,12 @@ class View implements ArgumentInterface
         }
     }
 
-    private function getProduct($productEntityId)
+    /**
+     * @param $productEntityId
+     * @return ProductInterface|null
+     * @throws NoSuchEntityException
+     */
+    private function getProduct($productEntityId): ?ProductInterface
     {
         if (!isset($productEntityId)) {
             return null;

@@ -30,10 +30,10 @@ class Delete extends Action implements HttpGetActionInterface
      *
      * @return Redirect
      */
-    public function execute()
+    public function execute(): Redirect
     {
         $id = $this->getRequest()->getParam('post_id');
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
 
         if ($id) {

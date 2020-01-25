@@ -76,7 +76,12 @@ class ImageUploader
         return rtrim($path, '/') . '/' . ltrim($imageName, '/');
     }
 
-    public function moveFileFromTmp($imageName)
+    /**
+     * @param $imageName
+     * @return string
+     * @throws LocalizedException
+     */
+    public function moveFileFromTmp($imageName): string
     {
         $baseTmpPath = $this->getBaseTmpPath();
         $basePath = $this->getBasePath();
@@ -99,7 +104,13 @@ class ImageUploader
         return $imageName;
     }
 
-    public function saveFileToTmpDir($fileId)
+    /**
+     * @param $fileId
+     * @return array
+     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function saveFileToTmpDir($fileId): array
     {
         $baseTmpPath = $this->getBaseTmpPath();
         $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
@@ -140,7 +151,7 @@ class ImageUploader
      * @throws LocalizedException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getImageUrl($imageName)
+    public function getImageUrl($imageName): string
     {
         if (isset($imageName)) {
             return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA)

@@ -63,7 +63,10 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
 
-    public function getIdentities()
+    /**
+     * @return string
+     */
+    public function getIdentities(): string
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
@@ -73,7 +76,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->getData(self::POST_ID);
     }
@@ -89,11 +92,9 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
     }
 
     /**
-     * Get content
-     *
-     * @return string
+     * @return string|null
      */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->getData(self::CONTENT);
     }
@@ -103,7 +104,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      *
      * @return string
      */
-    public function getIdentifier()
+    public function getIdentifier(): string
     {
         return $this->getData(self::IDENTIFIER);
     }
@@ -113,7 +114,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      *
      * @return string
      */
-    public function getCreationTime()
+    public function getCreationTime(): string
     {
         return $this->getData(self::CREATION_TIME);
     }
@@ -123,7 +124,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      *
      * @return string
      */
-    public function getUpdateTime()
+    public function getUpdateTime(): string
     {
         return $this->getData(self::UPDATE_TIME);
     }
@@ -133,7 +134,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      *
      * @return bool
      */
-    public function getIsActive()
+    public function getIsActive(): bool
     {
         return (bool)$this->getData(self::IS_ACTIVE);
     }
@@ -144,7 +145,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      * @param int $id
      * @return PostInterface
      */
-    public function setId($id)
+    public function setId($id): PostInterface
     {
         return $this->setData(self::POST_ID, $id);
     }
@@ -155,7 +156,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      * @param string $title
      * @return PostInterface
      */
-    public function setTitle($title)
+    public function setTitle($title): PostInterface
     {
         return $this->setData(self::TITLE, $title);
     }
@@ -166,7 +167,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      * @param string $content
      * @return PostInterface
      */
-    public function setContent($content)
+    public function setContent($content): PostInterface
     {
         return $this->setData(self::CONTENT, $content);
     }
@@ -177,7 +178,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      * @param string $identifier
      * @return PostInterface
      */
-    public function setIdentifier($identifier)
+    public function setIdentifier($identifier): PostInterface
     {
         return $this->setData(self::IDENTIFIER, $identifier);
     }
@@ -188,7 +189,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      * @param string $creationTime
      * @return PostInterface
      */
-    public function setCreationTime($creationTime)
+    public function setCreationTime($creationTime): PostInterface
     {
         return $this->setData(self::CREATION_TIME, $creationTime);
     }
@@ -199,7 +200,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      * @param string $updateTime
      * @return PostInterface
      */
-    public function setUpdateTime($updateTime)
+    public function setUpdateTime($updateTime): PostInterface
     {
         return $this->setData(self::UPDATE_TIME, $updateTime);
     }
@@ -210,7 +211,7 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      * @param int|bool $isActive
      * @return PostInterface
      */
-    public function setIsActive($isActive)
+    public function setIsActive($isActive): PostInterface
     {
         return $this->setData(self::IS_ACTIVE, $isActive);
     }
@@ -220,32 +221,34 @@ class Post extends AbstractModel implements PostInterface, IdentityInterface
      *
      * @return array
      */
-    public function getAvailableStatuses()
+    public function getAvailableStatuses(): array
     {
         return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
 
     /**
-     * Get image name
-     *
-     * @return string
+     * @return string|null
      */
-    public function getImageName()
+    public function getImageName(): ?string
     {
         return $this->getData(self::IMAGE_NAME);
     }
 
     /**
-     * @param $imageName
-     * @return string
+     * @param string $imageName
+     * @return string|null
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getImageUrl($imageName)
+    public function getImageUrl($imageName): ?string
     {
         return $this->imageUploaderge->getImageUrl($imageName);
     }
 
-    public function getProductId()
+    /**
+     * @return string|null
+     */
+    public function getProductId(): ?string
     {
         return $this->getData(self::PRODUCT_ID);
     }

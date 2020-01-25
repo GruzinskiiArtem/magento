@@ -27,7 +27,7 @@ class GenericButton
      *
      * @return int|null
      */
-    public function getPostId()
+    public function getPostId(): ?int
     {
         try {
             return $this->context->getRequest()->getParam('post_id');

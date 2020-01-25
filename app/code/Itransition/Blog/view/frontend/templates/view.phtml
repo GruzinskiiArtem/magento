@@ -12,6 +12,6 @@ $post = $block->getPostModel();
     <?= $post->getCreationTime() ?>
 </p>
 <?php
-if ($post->getProductId()): ?>
+if ($post->isProductId()): ?>
     <a href="<?= $post->getProductUrl() ?> ">Product</a>
 <?php endif; ?>

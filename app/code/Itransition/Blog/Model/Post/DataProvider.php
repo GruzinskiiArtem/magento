@@ -54,7 +54,7 @@ class DataProvider extends AbstractDataProvider
      *
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;
@@ -82,7 +82,10 @@ class DataProvider extends AbstractDataProvider
         return $this->loadedData;
     }
 
-    public function getMediaUrl()
+    /**
+     * @return string
+     */
+    public function getMediaUrl(): string
     {
         $mediaUrl = $this->storeManager->getStore()
                 ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA).'blog/tmp/icon/';

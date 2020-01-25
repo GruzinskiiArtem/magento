@@ -1,9 +1,9 @@
 <?php
-
-$posts = $block->getPosts();
+$product = $block->getPorductModel();
+$posts = $product->getPosts();
 
 foreach ($posts as $post): ?>
 <ul>
-    <li><a href="<?= $block->generateUrl($post->getIdentifier()) ?>"><?= $post->getTitle() ?></a></li>
+    <li><a href="<?= $product->generateUrl($post->getIdentifier()) ?>"><?= $post->getTitle() ?></a></li>
 </ul>
 <?php endforeach; ?>

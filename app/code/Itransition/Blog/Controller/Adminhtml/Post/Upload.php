@@ -32,7 +32,7 @@ class Upload extends Action
      *
      * @return ResultInterface
      */
-    public function execute()
+    public function execute(): ResultInterface
     {
         try {
             $result = $this->imageUploader->saveFileToTmpDir('image');

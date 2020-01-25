@@ -1,14 +1,15 @@
 <?php
 
-$postCollection = $block->getPostCollection();
+$blog = $block->getBlogModel();
+$postCollection = $blog->getPostCollection();
 /**
  * @var \Itransition\Blog\Model\Post $post
  */
 foreach ($postCollection as $post): ?>
-    <a href="<?= $block->generateUrl($post->getIdentifier()) ?>">
+    <a href="<?= $blog->generateUrl($post->getIdentifier()) ?>">
         <div class="itr-shadow ">
             <h1><?= $post->getTitle() ?></h1>
-            <img src="<?= $block->getImageUrl($post) ?>">
+            <img src="<?= $blog->getImageUrl($post) ?>">
         </div>
     </a>
 <?php endforeach; ?>

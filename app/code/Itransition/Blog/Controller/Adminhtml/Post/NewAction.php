@@ -6,21 +6,23 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Forward;
 use Magento\Backend\App\Action\Context;
+use \Magento\Backend\Model\View\Result\ForwardFactory;
+
 /**
  * Create Blog post action.
  */
 class NewAction extends Action implements HttpGetActionInterface
 {
     /**
-     * @var \Magento\Backend\Model\View\Result\ForwardFactory
+     * @var ForwardFactory
      */
     protected $resultForwardFactory;
 
     /**
      * @param Context $context
-     * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+     * @param ForwardFactory $resultForwardFactory
      */
-    public function __construct(Context $context, \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory)
+    public function __construct(Context $context, ForwardFactory $resultForwardFactory)
     {
         $this->resultForwardFactory = $resultForwardFactory;
         parent::__construct($context);
@@ -31,7 +33,7 @@ class NewAction extends Action implements HttpGetActionInterface
      *
      * @return Forward
      */
-    public function execute()
+    public function execute(): Forward
     {
         /** @var Forward $resultForward */
         $resultForward = $this->resultForwardFactory->create();

@@ -4,8 +4,12 @@
         <css src="Itransition_Blog::css/blog.css" type="text/css" />
     </head>
     <body>
-        <referenceContainer name="content">
-            <block class="Itransition\Blog\Block\Post\Index" name="itrblog_post_index" template="Itransition_Blog::index.phtml"/>
-        </referenceContainer>
+        <referenceBlock name="content">
+            <block name="itrblog_post_index" template="Itransition_Blog::index.phtml">
+                <arguments>
+                    <argument name="blog_model" xsi:type="object">Itransition\Blog\ViewModel\Post\Index</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>

@@ -27,7 +27,7 @@ class IsActive implements OptionSourceInterface
      *
      * @return array
      */
-    public function toOptionArray()
+    public function toOptionArray(): array
     {
         $availableOptions = $this->post->getAvailableStatuses();
         $options = [];

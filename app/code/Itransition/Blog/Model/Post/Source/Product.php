@@ -17,7 +17,10 @@ class Product implements OptionSourceInterface
         $this->productCollectionFactory = $productCollectionFactory;
     }
 
-    public function toOptionArray()
+    /**
+     * @return array
+     */
+    public function toOptionArray(): array
     {
         /**
          * @var \Magento\Catalog\Model\Product $product;

@@ -79,7 +79,7 @@ class Email extends AbstractHelper
      * @return StoreInterface
      * @throws NoSuchEntityException
      */
-    public function getStore()
+    public function getStore(): StoreInterface
     {
         return $this->storeManager->getStore();
     }
@@ -91,7 +91,7 @@ class Email extends AbstractHelper
      * @return $this
      * @throws NoSuchEntityException
      */
-    public function generateTemplate($variable, $receiverInfo, $templateId)
+    public function generateTemplate($variable, $receiverInfo, $templateId): Email
     {
         $this->transportBuilder->setTemplateIdentifier($templateId)
             ->setTemplateOptions(
@@ -128,7 +128,7 @@ class Email extends AbstractHelper
      * @throws MailException
      * @throws NoSuchEntityException
      */
-    public function notify($email, $name)
+    public function notify($email, $name): Email
     {
 
         $receiverInfo = [

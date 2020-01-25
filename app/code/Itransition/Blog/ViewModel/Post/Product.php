@@ -1,8 +1,10 @@
 <?php
 
-namespace Itransition\Blog\Block\Post;
+namespace Itransition\Blog\ViewModel\Post;
 
 use Itransition\Blog\Api\Data\PostInterface;
+use Itransition\Blog\Model\Post;
+use Itransition\Blog\Model\ResourceModel\Post\Collection;
 use Itransition\Blog\Model\ResourceModel\Post\CollectionFactory;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Block\Product\View;
@@ -28,13 +30,19 @@ class Product extends View
         parent::__construct($context, $urlEncoder, $jsonEncoder, $string, $productHelper, $productTypeConfig, $localeFormat, $customerSession, $productRepository, $priceCurrency, $data);
     }
 
-    public function getPosts()
+    /**
+     * @return Collection
+     */
+    public function getPosts(): Collection
     {
-        $collection = $this->postCollection->create()->addFieldToFilter(PostInterface::PRODUCT_ID, $this->getProduct()->getId());
-        return $collection;
+        return $this->postCollection->create()->addFieldToFilter(PostInterface::PRODUCT_ID, $this->getProduct()->getId());
     }
 
-    public function generateUrl($identifier)
+    /**
+     * @param string $identifier
+     * @return string
+     */
+    public function generateUrl($identifier): string
     {
         return $this->urlBuilder->getUrl(null, ['blog' => $identifier]);
     }

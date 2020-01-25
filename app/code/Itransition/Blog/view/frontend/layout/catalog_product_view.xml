@@ -3,9 +3,9 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="product.info.details">
-            <block class="Itransition\Blog\Block\Post\Product" group="detailed_info" name="itransition_blog_post_product"
-                   template="Itransition_Blog::product.phtml">
+            <block name="itransition_blog_post_product" group="detailed_info" template="Itransition_Blog::product.phtml">
                 <arguments>
+                    <argument name="product_model" xsi:type="object">Itransition\Blog\ViewModel\Post\Product</argument>
                     <argument name="title" translate="true" xsi:type="string">Posts</argument>
                     <argument name="sort_order" xsi:type="string">40</argument>
                 </arguments>

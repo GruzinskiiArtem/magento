@@ -5,6 +5,7 @@ namespace Itransition\Blog\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Itransition\Blog\Helper\Email;
 use Itransition\Blog\Model\Post;
+use Magento\Framework\Event\Observer;
 
 class NewPostObserver implements ObserverInterface
 {
@@ -13,14 +14,20 @@ class NewPostObserver implements ObserverInterface
      */
     private $emailHelper;
 
+    /**
+     * NewPostObserver constructor.
+     * @param Email $emailHelper
+     */
     public function __construct(Email $emailHelper)
     {
         $this->emailHelper = $emailHelper;
     }
 
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    public function execute(Observer $observer)
     {
         $post = $observer->getPost();
-        $this->emailHelper->notify('a.gruzinsky@itransition.com', 'Test');
+        if ($post->isObjectNew()) {
+            $this->emailHelper->notify('a.gruzinsky@itransition.com', 'Test');
+        }
     }
 }

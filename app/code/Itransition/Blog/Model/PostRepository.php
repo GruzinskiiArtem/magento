@@ -51,7 +51,7 @@ class PostRepository implements PostRepositoryInterface
      * @return Post
      * @throws CouldNotSaveException
      */
-    public function save(\Itransition\Blog\Api\Data\PostInterface $post)
+    public function save(\Itransition\Blog\Api\Data\PostInterface $post): bool
     {
         try {
             $this->resource->save($post);
@@ -71,7 +71,7 @@ class PostRepository implements PostRepositoryInterface
      * @return Post
      * @throws NoSuchEntityException
      */
-    public function getById($postId)
+    public function getById($postId): Post
     {
         $post = $this->postFactory->create();
         $post->load($postId);
@@ -87,7 +87,7 @@ class PostRepository implements PostRepositoryInterface
      * @param $identifier
      * @return \Magento\Framework\DataObject
      */
-    public function getByIdentifier($identifier)
+    public function getByIdentifier($identifier): \Magento\Framework\DataObject
     {
         $collection = $this->postCollectionFactory->create()
             ->addFieldToFilter(PostInterface::IDENTIFIER, $identifier);
@@ -102,7 +102,7 @@ class PostRepository implements PostRepositoryInterface
      * @return bool
      * @throws CouldNotDeleteException
      */
-    public function delete(\Itransition\Blog\Api\Data\PostInterface $post)
+    public function delete(\Itransition\Blog\Api\Data\PostInterface $post): bool
     {
         try {
             $this->resource->delete($post);
@@ -122,7 +122,7 @@ class PostRepository implements PostRepositoryInterface
      * @throws CouldNotDeleteException
      * @throws NoSuchEntityException
      */
-    public function deleteById($postId)
+    public function deleteById($postId): bool
     {
         return $this->delete($this->getById($postId));
     }

@@ -10,7 +10,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
     /**
      * @return array
      */
-    public function getButtonData()
+    public function getButtonData(): array
     {
         return [
             'label' => __('Save'),
@@ -41,7 +41,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
      *
      * @return array
      */
-    private function getOptions()
+    private function getOptions(): array
     {
         $options = [
             [

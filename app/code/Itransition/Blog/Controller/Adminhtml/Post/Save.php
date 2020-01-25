@@ -68,7 +68,7 @@ class Save extends Action implements HttpPostActionInterface
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @return ResultInterface
      */
-    public function execute()
+    public function execute(): ResultInterface
     {
         $data = $this->getRequest()->getPostValue();
         /** @var Redirect $resultRedirect */
